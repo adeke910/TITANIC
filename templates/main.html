@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="static/styles.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script>
+      function myFunction() {
+        var age = $("#age").val();
+        var sex = $("#sex").val();
+        var Family = $("#Family").val();
+        var Pclass = $("#Pclass").val();
+        var Embarked = $("#Embarked").val();
+
+
+        var values = {
+          age,
+          sex,
+          Family,
+          Pclass,
+          Embarked,
+        };
+        console.log(values)
+        $.ajax({
+          url: "/submit",
+          type: "POST",
+          data: values,
+        }).done(function (response) {
+          console.log('Response',response)
+          // var html = "<br><br><br><p> <b> RESULT : <b><p>";
+          // response = response.result;
+          // $.each(response, function (key, val) {
+          //   console.log(val);
+          //   html += "<p>" + val + "<p>";
+          // });
+          // html += "<br>";
+          // $(".show-data").append(html);
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <h2>Would You Have Survived The Titanic?</h2>
+    <div class="container">
+      <div>
+        <label for="fname">First Name</label>
+        <input
+          type="text"
+          id="fname"
+          name="firstname"
+          placeholder="Your name.."
+        />
+
+        <label for="lname">Last Name</label>
+        <input
+          type="text"
+          id="lname"
+          name="lastname"
+          placeholder="Your last name.."
+        />
+
+        <label for="age">Age</label>
+        <input type="number" id="age" name="age" />
+
+        <label for="sex">Sex</label>
+        <select id="sex" name="sex">
+          <option value=""></option>
+          <option value="male">Male</option>
+          <option value="Female">Female</option>
+        </select>
+
+        <label for="Family">Family Total</label>
+        <input type="number" id="age" name="age" />
+
+        <label for="Pclass">Ticket Class</label>
+        <select id="Pclass" name="Pclass">
+          <option value=""></option>
+          <option value="Economy">Economy</option>
+          <option value="First Class">First Class</option>
+          <option value="Middle Class">Middle Class</option>
+        </select>
+
+        <label for="Embarked">Point of Embarkation</label>
+        <select id="Embarked" name="Embarked">
+          <option value=""></option>
+          <option value="Cherbourg">Cherbourg</option>
+          <option value="Queenstown">Queenstown</option>
+          <option value="Southampton">Southampton</option>
+        </select>
+
+        <button id="clicked" onclick="myFunction()">Check</button>
+      </div>
+    </div>
+  </body>
+</html>
